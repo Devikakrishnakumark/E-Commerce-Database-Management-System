@@ -1,0 +1,14 @@
+body{
+    background:#f4f6f9;
+}
+
+.form-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.form-box{
+    width:400px;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | ShopEase</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<i class="fa-solid fa-bag-shopping"></i>
+<h2>ShopEase</h2>
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart</a>
+<a href="orders.html">Orders</a>
+</nav>
+
+<div class="icons">
+<i class="fa-solid fa-cart-shopping"></i>
+
+<button onclick="location.href='login.html'">
+Login
+</button>
+
+</div>
+
+</header>
+
+<section class="checkout-container">
+
+<div class="billing">
+
+<h2>Billing Details</h2>
+
+<form>
+
+<input type="text" placeholder="Full Name" required>
+
+<input type="email" placeholder="Email Address" required>
+
+<input type="text" placeholder="Phone Number" required>
+
+<textarea placeholder="Delivery Address" rows="4" required></textarea>
+
+<select required>
+
+<option>Select Payment Method</option>
+
+<option>Cash on Delivery</option>
+
+<option>UPI</option>
+
+<option>Credit Card</option>
+
+<option>Debit Card</option>
+
+<option>Net Banking</option>
+
+</select>
+
+<button class="btn" type="submit">
+Place Order
+</button>
+
+</form>
+
+</div>
+
+<div class="order-summary">
+
+<h2>Order Summary</h2>
+
+<hr>
+
+<p>Wireless Headphones <span>₹4,999</span></p>
+
+<p>Smart Watch <span>₹7,499</span></p>
+
+<p>Delivery Charges <span>FREE</span></p>
+
+<hr>
+
+<h3>Total <span>₹12,498</span></h3>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 ShopEase. All Rights Reserved.</p>
+
+</footer>
+
+<script>
+
+document.querySelector("form").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+alert("Order Placed Successfully!");
+
+window.location.href="orders.html";
+
+});
+
+</script>
+
+</body>
+</html>

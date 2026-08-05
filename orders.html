@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | ShopEase</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <h2>ShopEase</h2>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="orders.html">Orders</a>
+    </nav>
+
+    <div class="icons">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <button onclick="location.href='login.html'">Login</button>
+    </div>
+</header>
+
+<section class="orders-section">
+
+    <h1>My Orders</h1>
+
+    <div class="order-card">
+        <div class="order-header">
+            <h3>Order #1001</h3>
+            <span class="status delivered">Delivered</span>
+        </div>
+
+        <p><strong>Date:</strong> 05 Aug 2026</p>
+        <p><strong>Items:</strong> Wireless Headphones</p>
+        <p><strong>Total:</strong> ₹4,999</p>
+
+        <div class="order-actions">
+            <button class="btn">View Details</button>
+            <button class="btn rate-btn">Rate Product</button>
+        </div>
+    </div>
+
+    <div class="order-card">
+        <div class="order-header">
+            <h3>Order #1002</h3>
+            <span class="status shipped">Shipped</span>
+        </div>
+
+        <p><strong>Date:</strong> 03 Aug 2026</p>
+        <p><strong>Items:</strong> Smart Watch</p>
+        <p><strong>Total:</strong> ₹7,499</p>
+
+        <div class="order-actions">
+            <button class="btn">Track Order</button>
+        </div>
+    </div>
+
+    <div class="order-card">
+        <div class="order-header">
+            <h3>Order #1003</h3>
+            <span class="status processing">Processing</span>
+        </div>
+
+        <p><strong>Date:</strong> 02 Aug 2026</p>
+        <p><strong>Items:</strong> Sneakers</p>
+        <p><strong>Total:</strong> ₹3,499</p>
+
+        <div class="order-actions">
+            <button class="btn">View Details</button>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 ShopEase. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

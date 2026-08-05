@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product Details | ShopEase</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<i class="fa-solid fa-bag-shopping"></i>
+<h2>ShopEase</h2>
+</div>
+
+<div class="search-box">
+<input type="text" placeholder="Search Products...">
+<button>
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="categories.html">Categories</a>
+<a href="about.html">About Us</a>
+
+</nav>
+
+<div class="icons">
+
+<a href="cart.html">
+<i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+<button onclick="location.href='login.html'">
+Login
+</button>
+
+</div>
+
+</header>
+
+<section class="product-details">
+
+<div class="product-image">
+
+<img id="productImage"
+src=""
+alt="Product">
+
+</div>
+
+<div class="product-info">
+
+<h1 id="productName"></h1>
+
+<p class="price" id="productPrice"></p>
+
+<p class="rating">
+
+⭐⭐⭐⭐⭐ (128 Reviews)
+
+</p>
+
+<p id="productDescription"></p>
+
+<h3>Specifications</h3>
+
+<ul id="productSpecs">
+
+</ul>
+
+<br>
+
+<label><b>Quantity</b></label>
+
+<input type="number"
+value="1"
+min="1"
+max="10">
+
+<br><br>
+
+<button class="btn"
+onclick="location.href='cart.html'">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+Add to Cart
+
+</button>
+
+<button class="btn"
+style="background:#2e7d32;margin-left:10px;"
+onclick="location.href='checkout.html'">
+
+Buy Now
+
+</button>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 ShopEase. All Rights Reserved.
+
+</p>
+
+<div>
+
+<a href="privacy.html">Privacy Policy</a>
+
+<a href="terms.html">Terms & Conditions</a>
+
+<a href="contact.html">Contact Us</a>
+
+</div>
+
+</footer>
+
+<script>
+
+const products={
+
+headphones:{
+
+name:"Wireless Headphones",
+
+price:"₹4,999",
+
+image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700",
+
+description:"Experience crystal-clear sound with premium wireless headphones. Enjoy up to 30 hours of battery life with Bluetooth 5.3 connectivity.",
+
+specs:[
+
+"Brand : ShopEase Audio",
+
+"Bluetooth Version : 5.3",
+
+"Battery Backup : 30 Hours",
+
+"Charging : USB Type-C",
+
+"Warranty : 1 Year"
+
+]
+
+},
+
+watch:{
+
+name:"Smart Watch",
+
+price:"₹7,499",
+
+image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700",
+
+description:"Smart watch with AMOLED display, fitness tracking, heart-rate monitor and Bluetooth calling.",
+
+specs:[
+
+"AMOLED Display",
+
+"Heart Rate Monitor",
+
+"Battery : 10 Days",
+
+"Bluetooth Calling",
+
+"Warranty : 1 Year"
+
+]
+
+},
+
+laptop:{
+
+name:"Laptop",
+
+price:"₹54,999",
+
+image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=700",
+
+description:"High-performance laptop suitable for students, office work and entertainment.",
+
+specs:[
+
+"Intel Core i5 Processor",
+
+"16GB RAM",
+
+"512GB SSD",
+
+"15.6 inch Full HD",
+
+"Windows 11"
+
+]
+
+},speaker:{
+
+name:"Bluetooth Speaker",
+
+price:"₹2,999",
+
+image:"https://images.unsplash.com/photo-1545454675-3531b543be5d?w=700",
+
+description:"Portable Bluetooth speaker with powerful bass, crystal-clear sound and up to 15 hours of battery life.",
+
+specs:[
+
+"Bluetooth Version : 5.3",
+
+"Battery Backup : 15 Hours",
+
+"USB Type-C Charging",
+
+"Water Resistant",
+
+"Warranty : 1 Year"
+
+]
+
+},
+
+backpack:{
+
+name:"Backpack",
+
+price:"₹1,999",
+
+image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700",
+
+description:"Stylish backpack with spacious compartments, laptop sleeve and water-resistant material.",
+
+specs:[
+
+"Capacity : 25 Litres",
+
+"Laptop Compartment",
+
+"Water Resistant",
+
+"Adjustable Shoulder Straps",
+
+"Warranty : 1 Year"
+
+]
+
+},
+
+shoes:{
+
+name:"Sneakers",
+
+price:"₹3,499",
+
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700",
+
+description:"Comfortable sneakers designed for daily wear with lightweight cushioning and breathable fabric.",
+
+specs:[
+
+"Material : Mesh",
+
+"Rubber Sole",
+
+"Lightweight",
+
+"Available Sizes : 6-11",
+
+"Warranty : 6 Months"
+
+]
+
+}
+
+};
+
+const params = new URLSearchParams(window.location.search);
+
+const product = params.get("product") || "headphones";
+
+const p = products[product];
+
+document.getElementById("productName").innerHTML = p.name;
+
+document.getElementById("productPrice").innerHTML = p.price;
+
+document.getElementById("productImage").src = p.image;
+
+document.getElementById("productImage").alt = p.name;
+
+document.getElementById("productDescription").innerHTML = p.description;
+
+let specList = "";
+
+for(let i=0;i<p.specs.length;i++){
+
+specList += "<li>"+p.specs[i]+"</li>";
+
+}
+
+document.getElementById("productSpecs").innerHTML = specList;
+
+</script>
+
+</body>
+</html>
