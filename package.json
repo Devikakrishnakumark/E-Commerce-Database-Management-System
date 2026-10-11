@@ -1,0 +1,28 @@
+{
+  "name": "repo",
+  "version": "1.0.0",
+  "description": "ShopEase is a responsive E-Commerce Database Management System developed as a DBMS mini project. The project demonstrates the core concepts of database design and e-commerce management through an interactive user interface.",
+  "main": "cart.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Devikakrishnakumark/E-Commerce-Database-Management-System.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Devikakrishnakumark/E-Commerce-Database-Management-System/issues"
+  },
+  "homepage": "https://github.com/Devikakrishnakumark/E-Commerce-Database-Management-System#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "mysql2": "^3.24.5",
+    "pg": "^8.23.1"
+  }
+}

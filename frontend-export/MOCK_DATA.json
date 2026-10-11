@@ -1,0 +1,45 @@
+{
+  "products": [
+    {
+      "product_id": 1,
+      "product_name": "Smartphone X",
+      "price": "799.99",
+      "description": "Latest 5G smartphone",
+      "stock_quantity": 50,
+      "category_name": "Electronics"
+    },
+    {
+      "product_id": 3,
+      "product_name": "Men's T-Shirt",
+      "price": "19.99",
+      "description": "Cotton casual t-shirt",
+      "stock_quantity": 200,
+      "category_name": "Clothing"
+    }
+  ],
+  "cart": [
+    {
+      "product_id": 3,
+      "product_name": "Men's T-Shirt",
+      "price": "19.99",
+      "quantity": 2,
+      "total": "39.98"
+    }
+  ],
+  "orders": [
+    {
+      "order_id": 101,
+      "order_date": "2026-10-09T14:30:00.000Z",
+      "total_amount": "819.98",
+      "status": "Shipped",
+      "items": "Smartphone X, Men's T-Shirt"
+    }
+  ],
+  "auth_success": {
+    "message": "Login Successful!",
+    "user": {
+      "customer_id": 4,
+      "name": "Jane Doe"
+    }
+  }
+}

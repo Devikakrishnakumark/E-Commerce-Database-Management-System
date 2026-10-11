@@ -1,0 +1,151 @@
+import {
+  ArrowUpRight,
+  ArrowDownRight,
+  IndianRupee,
+  ShoppingBag,
+  Users,
+  Package,
+  Download,
+  CalendarDays,
+  ChevronDown,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { formatINR, exportCSV } from '@/lib/dashboard-data';
+import { useDashboard } from './store';
+
+export function PageHeading({
+  title,
+  subtitle,
+  children,
+}: {
+  title: string;
+  subtitle: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div className="page-heading">
+      <div>
+        <div className="page-eyebrow">STORE MANAGEMENT</div>
+        <h1>{title}</h1>
+        <p>{subtitle}</p>
+      </div>
+      <div className="page-actions">{children}</div>
+    </div>
+  );
+}
+
+export function ExportButton({
+  name = 'export',
+  rows = [],
+}: {
+  name?: string;
+  rows?: readonly Record<string, unknown>[];
+}) {
+  return (
+    <Button variant="outline" onClick={() => exportCSV(name, rows)}>
+      <Download />
+      Export {name === 'report' ? 'report' : 'CSV'}
+    </Button>
+  );
+}
+
+export function DateControl({
+  period,
+  setPeriod,
+}: {
+  period: string;
+  setPeriod: (v: string) => void;
+}) {
+  return (
+    <label className="date-control">
+      <CalendarDays size={16} />
+      <select
+        aria-label="Reporting period"
+        value={period}
+        onChange={(e) => setPeriod(e.target.value)}
+      >
+        <option value="month">This month</option>
+        <option value="week">This week</option>
+        <option value="year">This year</option>
+      </select>
+      <ChevronDown size={14} />
+    </label>
+  );
+}
+
+export function Stats({ period = 'month' }: { period?: string }) {
+  const { products, stats } = useDashboard();
+  const factor = period === 'week' ? 0.24 : period === 'year' ? 9.2 : 1;
+
+  const totalRev = (stats?.total_revenue || 0) * factor;
+  const totalOrd = Math.round((stats?.total_orders || 0) * factor);
+  const totalCust = Math.round((stats?.total_customers || 0) * factor);
+  const lowStockCount = products.filter((p) => p.stock > 0 && p.stock < 10).length;
+
+  const metrics = [
+    {
+      name: 'Total revenue',
+      value: formatINR(totalRev),
+      change: '12.8%',
+      icon: IndianRupee,
+      tone: 'green',
+      note: 'vs. previous period',
+    },
+    {
+      name: 'Total orders',
+      value: totalOrd.toLocaleString('en-IN'),
+      change: '8.2%',
+      icon: ShoppingBag,
+      tone: 'blue',
+      note: 'vs. previous period',
+    },
+    {
+      name: 'Total customers',
+      value: totalCust.toLocaleString('en-IN'),
+      change: '6.4%',
+      icon: Users,
+      tone: 'violet',
+      note: 'vs. previous period',
+    },
+    {
+      name: 'Total products',
+      value: products.length.toLocaleString('en-IN'),
+      change: `${lowStockCount} low stock`,
+      icon: Package,
+      tone: 'amber',
+      note: 'in database',
+    },
+  ];
+
+  return (
+    <div className="stats-grid">
+      {metrics.map((m, i) => (
+        <article className="stat-card" key={m.name}>
+          <div className="stat-top">
+            <span>{m.name}</span>
+            <span className={`stat-icon ${m.tone}`}>
+              <m.icon size={19} />
+            </span>
+          </div>
+          <div className="stat-value">{m.value}</div>
+          <div className="stat-bottom">
+            <span className={i === 3 ? 'stock-note' : 'positive'}>
+              {i === 3 ? <ArrowDownRight size={13} /> : <ArrowUpRight size={13} />} {m.change}
+            </span>
+            <span>{m.note}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+export function StatusBadge({ status }: { status: string }) {
+  const s = (status || 'Pending').toLowerCase().replaceAll(' ', '-');
+  return (
+    <span className={`badge ${s}`}>
+      <i />
+      {status || 'Pending'}
+    </span>
+  );
+}

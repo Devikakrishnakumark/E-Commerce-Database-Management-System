@@ -1,0 +1,16 @@
+import { Link, useNavigate } from '@tanstack/react-router';
+import { useState } from 'react';
+import { ShoppingBag, ShoppingCart, Search, Menu, X, ArrowRight, LogOut } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useSession } from './session';
+
+export function Header() {
+  const { user, setUser } = useSession();
+  const [q, setQ] = useState('');
+  const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
+  return <header className="site-header"><div className="shop-container header-main"><Link to="/" className="brand"><ShoppingBag strokeWidth={2.4} /><span>ShopEase</span></Link><form className="header-search" onSubmit={e => { e.preventDefault(); void navigate({ to: '/products.html', search: { q, category: '', max: '', sort: 'featured' } }); setMenu(false); }}><input aria-label="Search the store" placeholder="Search for products, categories…" value={q} onChange={e => setQ(e.target.value)} /><Button type="submit" variant="header" size="icon" aria-label="Search"><Search /></Button></form><nav className={`header-nav ${menu ? 'nav-open' : ''}`} aria-label="Main navigation"><Link to="/" activeOptions={{ exact: true }} onClick={() => setMenu(false)}>Home</Link><Link to="/products.html" search={{ q: '', category: '', max: '', sort: 'featured' }} onClick={() => setMenu(false)}>Products</Link><Link to="/categories.html" onClick={() => setMenu(false)}>Categories</Link><Link to="/about.html" onClick={() => setMenu(false)}>About Us</Link>{user && <Link to="/orders.html" onClick={() => setMenu(false)}>My Orders</Link>}{user?.role === 'admin' && <Link to="/admin" onClick={() => setMenu(false)}>Dashboard</Link>}</nav><div className="header-account"><Button asChild variant="header" size="icon"><Link to="/cart.html" aria-label="Shopping cart"><ShoppingCart /></Link></Button>{user ? <Button variant="secondary" className="account-button" onClick={() => { setUser(null); void navigate({ to: '/', replace: true }); }}><LogOut /><span>Logout <span className="account-name">({user.name})</span></span></Button> : <><Button variant="header" asChild><Link to="/login.html">Login</Link></Button><Button variant="secondary" asChild><Link to="/admin_login.html">Admin</Link></Button></>}<Button variant="header" size="icon" className="menu-toggle" aria-label={menu ? 'Close navigation' : 'Open navigation'} onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</Button></div></div></header>;
+}
+export function Footer() {
+  return <footer className="site-footer"><div className="shop-container footer-main"><div><Link to="/" className="brand footer-brand"><ShoppingBag /><span>ShopEase</span></Link><p>Your everyday shopping destination.</p></div><nav aria-label="Footer navigation"><Link to="/products.html" search={{ q: '', category: '', max: '', sort: 'featured' }}>Products</Link><Link to="/categories.html">Categories</Link><Link to="/about.html">About Us</Link><Link to="/orders.html">My Orders</Link></nav><Link to="/products.html" search={{ q: '', category: '', max: '', sort: 'featured' }} className="footer-shop">Find your next favorite <ArrowRight size={18} /></Link></div><div className="shop-container footer-bottom"><span>© 2026 ShopEase. All rights reserved.</span><span>Simple shopping. Everyday favorites.</span></div></footer>;
+}
